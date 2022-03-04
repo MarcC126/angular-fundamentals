@@ -1,0 +1,162 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@294&display=swap" rel="stylesheet">
+
+<h1>Form</h1>
+<div class="form">
+  <form action="#" #registerForm="ngForm" (ngSubmit)="registerUser(registerForm)">
+    <h2 class="form-title">Formulario de Registro</h2>
+    <div class="form-field">
+      <label class="input-title">Nombre:</label>
+        <input type="text" name="firstName" placeholder="Marco" minlength="3" #firstNameField="ngModel" [(ngModel)]="registerUserData.firstName" required />
+        <label class="message-required-error" [class.visible]="registerForm.submitted && registerForm.controls['firstName'].invalid">Campo requerido</label>
+    </div>
+    <div class="form-field">
+      <label class="input-title">Apellido(s):</label>
+        <input type="text" name="lastName" placeholder="Reus" minlength="2" #lastNameField="ngModel" [(ngModel)]="registerUserData.lastName" required />
+        <label class="message-required-error" [class.visible]="registerForm.submitted && registerForm.controls['lastName'].invalid">Campo requerido</label>
+    </div>
+
+    <div class="form-field">
+      <label class="input-title">Correo:</label>
+        <input type="email" name="email" placeholder="example@gmail.com" #emailField="ngModel" [(ngModel)]="registerUserData.email" required />
+        <label class="message-required-error" [class.visible]="registerForm.submitted && registerForm.controls['email'].invalid">Campo requerido</label>
+    </div>
+
+    <div class="form-field">
+      <label class="input-title">Contraseña:</label>
+        <input type="password" name="password" minlength="6" placeholder="***********" #passField="ngModel" [(ngModel)]="registerUserData.password" required />
+        <label class="message-required-error" [class.visible]="registerForm.submitted  && registerForm.controls['password'].invalid">Campo requerido</label>
+    </div>
+
+    <div class="form-button">
+      <button type="submit" >Registrarme</button>
+    </div>
+  </form>
+</div>
+<hr />
+<h1>ngClass & ngStyle</h1>
+<input type="text" required #myInput4="ngModel" [(ngModel)]="person.name" />
+<hr class="line-error" [ngClass]="{
+    valid: myInput4.valid,
+    invalid: myInput4.invalid
+  }" />
+<p class="message-required-error" [class.invalid]="myInput4.invalid">
+  El campo es requerido
+</p>
+<div class="sizingImages">
+  <input type="number" [(ngModel)]="box.width" />
+  <input type="number" [(ngModel)]="box.height" />
+  <input type="color" [(ngModel)]="box.background" />
+</div>
+<div>
+  <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      background: box.background,
+      display: 'block'
+    }"></div>
+</div>
+<hr />
+
+<h1>Class & styles</h1>
+<input type="text" required #myInput2="ngModel" [(ngModel)]="person.name" />
+<div>
+  <p class="message-required-error" [class.invalid]="myInput2.invalid">
+    El campo es requerido
+  </p>
+</div>
+<label for="">Nombre</label>
+<input type="text" required #myInput3="ngModel" [(ngModel)]="person.name" />
+<div>
+  <p [style.font-style]="myInput3.valid ? 'normal' : 'italic'">Texto</p>
+</div>
+<div class="sizingImages">
+  <div>
+    <input type="number" [(ngModel)]="widthImg" />
+  </div>
+  <div>
+    <img [src]="imgRandom" [style.width.px]="widthImg" alt="" />
+  </div>
+</div>
+<hr />
+
+<h1>ngSwitch</h1>
+<input type="text" [(ngModel)]="newName" [(ngModel)]="person.name" />
+<div [ngSwitch]="person.name">
+  <p *ngSwitchCase="'Pedro'">Soy Pedro</p>
+  <p *ngSwitchCase="'Juan'">Soy Juan</p>
+  <p *ngSwitchCase="'Marcos'">Soy Marcos</p>
+  <p *ngSwitchDefault>Soy desconocido</p>
+</div>
+<hr />
+
+<h1>*ngFor Objs</h1>
+<div class="product--grids">
+  <div *ngFor="let product of products">
+    <img [src]="product.image" alt="image" height="250px" />
+    <h2>Price: ${{ product.price }} MXN</h2>
+    <h3>Product name: {{ product.name }}</h3>
+  </div>
+</div>
+<hr />
+
+<h1>*ngIf</h1>
+<input type="text" [(ngModel)]="newName" />
+<button (click)="addNameToList()">Add Name:</button>
+<ul>
+  <li class="emptyListMessage" *ngIf="names.length == 0">No hay nombres</li>
+  <li *ngFor="let name of names; index as i">
+    {{ i }} {{ name }}
+    <button (click)="deleteName(i)">Delete</button>
+  </li>
+</ul>
+<hr />
+
+<h1>*ngIf</h1>
+<input type="text" required [(ngModel)]="person.name" />
+<p *ngIf="person.name == 'Pedro'">Soy Pedro</p>
+<p *ngIf="person.name == 'Marc'; else elseBlock">Soy Marc</p>
+<ng-template #elseBlock>
+  <p>Block to display with else</p>
+</ng-template>
+<hr />
+
+<input type="text" required #myInput="ngModel" [(ngModel)]="person.name" />
+<p>{{ person.name }}</p>
+<p>Valid: {{ myInput.valid }}</p>
+<input type="number" required max="2" #myInputWithAge="ngModel" [(ngModel)]="person.age" />
+<p>Valid age: {{ myInputWithAge.valid }}</p>
+<hr />
+
+<div class="box" (scroll)="onScroll($event)">
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit itaque
+    delectus dolor expedita quis deserunt consectetur? Unde sit praesentium
+    commodi accusantium aperiam enim totam officia eum, ratione sequi repellat
+    assumenda.
+  </p>
+</div>
+<input type="text" name="" id="" [value]="person.name" (keyup)="changeName($event)" />
+<p>{{ person.name }}</p>
+<hr />
+
+<h1>Propiedades</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<input type="text" name="" id="" [value]="person.name" />
+<img [src]="imgRandom" alt="" width="100px" />
+<progress max="100" [value]="age"></progress>
+
+<hr />
+
+<button (click)="toggleButton()">Toggle Button</button>
+<p>Edad = {{ age }}</p>
+<button (click)="increseAge()">Click me and get u old!</button>
+
+<hr />
+
+<h1>Hello world!</h1>
+<h2>{{ "Hello world!".repeat(5) }}</h2>
+<p>3 + 3 = {{ 3 + 3 }}</p>
+<h3>Hola, soy {{ name }} y tengo {{ age }} años</h3>
+<img width="100%" src="{{ imgRandom }}" alt="img" />

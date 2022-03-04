@@ -1,0 +1,179 @@
+.box{
+  height: 200px;
+  width: 200px;
+  overflow: auto;
+  background-color: gray;
+}
+
+.emptyListMessage{
+  color: red;
+  font-size: 20px;
+  font-weight: 500;
+  list-style: none;
+}
+
+.product--grids{
+  display: flex;
+  flex-direction: column;
+  div{
+    img{
+      border-radius: 10px;
+    }
+    h2, p{
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 40em){
+  .product--grids{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .product--grids{
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.sizingImages{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.line-error{
+  height: 0;
+  border-bottom: 5px solid;
+  &.invalid{
+    border-color: rgb(212, 54, 54);
+  }
+  &.valid{
+    border-color: rgba(161, 161, 161, 0);
+  }
+}
+
+//-------------------------------------------------
+
+.form{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(224, 224, 224);
+  padding: 20px;
+  font-family: 'Nunito', sans-serif;
+}
+
+form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 10px;
+  border: 3px solid rgb(99, 99, 99);
+  padding: 50px 0;
+  background-color: white;
+}
+
+.form-field{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.form-field-label{
+  display: flex;
+}
+
+.message-required-error{
+  margin-top: 5px;
+  font-size: 13px;
+  color: rgb(255, 0, 0);
+  font-weight: 500;
+  display: none;
+  transition: all linear .5;
+  &.visible{
+    display: block;
+  }
+}
+
+input{
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid rgb(224, 224, 224);
+  padding: 0px 10px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.input-title{
+  font-weight: 600;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.form-title{
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: rgb(99, 99, 99);
+}
+
+.form-button{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+button{
+  background-color: rgb(99, 99, 99);
+  border: 2px solid rgb(68, 68, 68);
+  border-radius: 4px;
+  padding: 8px;
+  color: white;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+// ----------------------------
+// Response -------------------
+// Mobile
+@media screen and (min-width: 320px){
+  form{
+    width: 100%;
+  }
+
+  .form-field{
+    padding: 20px 35px;
+    width: auto;
+  }
+}
+
+// Tablet
+@media screen and (min-width: 580px){
+  form{
+    width: 50%;
+  }
+
+  .form-field{
+    padding: 20px 40px;
+  }
+}
+
+// Desktop
+@media screen and (min-width: 1024px){
+  form{
+    width: 30%;
+  }
+
+  input{
+    height: 30px;
+  }
+
+  .form-field{
+    padding: 20px 60px;
+  }
+}
